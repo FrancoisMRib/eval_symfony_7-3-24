@@ -1,9 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TaskController!{% endblock %}
+{# {% block title %}Hello TaskController!{% endblock %} #}
+{% block title %}Formulaire d'ajout d'une tâche{% endblock %}
 
 {% block body %}
-<style>
+{{ form_start(form, {'attr': {'class': 'max-w-sm mx-auto my-52'} } ) }}
+<h2 class="text-xl font-bold dark:text-white mb-3">Ajouter une tâche</h2>
+    {# Label et input nom #}
+    <div class="mb-5">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content) }}
+        {{ form_label(form.expiryDate) }}
+        {{ form_widget(form.expiryDate) }}
+        {{ form_label(form.statut) }}
+        {{ form_widget(form.statut) }}
+    </div>
+    <input type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
+    focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto 
+    px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    value="Ajouter" name="task[ajouter]">
+    <p class="text-xl font-bold text-red-600 mt-2 dark:text-red-600">{{ msg }}</p>
+    <p>{{ msg }}</p>
+    {{ form_end(form) }}
+
+{# <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
@@ -16,5 +38,5 @@
         <li>Your controller at <code>C:/Users/FrançoisR/Documents/evaluation symfony/eval/src/Controller/TaskController.php</code></li>
         <li>Your template at <code>C:/Users/FrançoisR/Documents/evaluation symfony/eval/templates/task/index.html.twig</code></li>
     </ul>
-</div>
+</div> #}
 {% endblock %}

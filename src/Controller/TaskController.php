@@ -14,6 +14,16 @@ use Symfony\Component\Routing\Attribute\Route;
 class TaskController extends AbstractController
 {
     private TaskRepository $taskRepository;
+    // private EntityManagerInterface $em;
+
+    public function __construct(TaskRepository $taskRepository,
+        EntityManagerInterface $em) 
+    {
+        $this->taskRepository = $taskRepository;
+
+        // $this->em = $em;
+    }
+
     #[Route('/task', name: 'app_task')]
     public function index(): Response
     {
@@ -33,7 +43,7 @@ class TaskController extends AbstractController
         {   
             $em->persist($task);
             $em->flush();
-            $msg = "La tâche à été ajouté en BDD";
+            $msg = "La tâche a été ajoutée en BDD";
         }
         return $this->render('task/index.html.twig', [
             'form'=> $form->createView(),
@@ -41,7 +51,8 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/', name: 'app_task_all')]
+
+    #[Route('/task/all', name: 'app_task_all')]
     public function taskAll(): Response
     {
         $tasks = $this->taskRepository->findAll();
